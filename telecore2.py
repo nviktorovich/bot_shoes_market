@@ -1,7 +1,7 @@
 import telebot
 from sub.constant import BotToken as BT
 from sub.constant import Messages as MSG
-from sub.shoes import Shoes
+from sub.constant import Files as FL
 from sub.choise import Choice
 import sub.algo as ALGO
 
@@ -15,23 +15,26 @@ def start_message_with_brands(message):
     Choice.set_brand('')
     Choice.set_color('')
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
-    for row in ALGO.get_parts_of_list(*Shoes.Brands.keys()):
+    Brands = ALGO.generate_brands_dictionary(FL.BASE_FILE)
+    for row in ALGO.get_parts_of_list(*Brands.keys()):
         keyboard.row(*row)
     bot.send_message(message.chat.id, text=MSG.START_MESSAGE, reply_markup=keyboard, disable_web_page_preview=True)
 
 
-@bot.message_handler(func=lambda message: message.text in Shoes.Brands.keys() or message.text == MSG.BACK_TO_MODEL_CHOICE_BUTTON)
+@bot.message_handler(func=lambda message: message.text in ALGO.generate_brands_dictionary(FL.BASE_FILE).keys()
+                                          or message.text == MSG.BACK_TO_MODEL_CHOICE_BUTTON)
 def message_with_models_of_selected_brand(message):
 
     print(f'message_with_models_of_selected_brand: brand is {Choice.brand}, model is {Choice.model}, color is {Choice.color}')
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
+    Brands = ALGO.generate_brands_dictionary(FL.BASE_FILE)
     try:
-        if message.text in Shoes.Brands.keys():
+        if message.text in Brands.keys():
             Choice.set_brand(message.text)
-            for row in ALGO.get_parts_of_list(*Shoes.Brands[message.text]):
+            for row in ALGO.get_parts_of_list(*Brands[message.text]):
                 keyboard.row(*row)
         elif message.text == MSG.BACK_TO_MODEL_CHOICE_BUTTON:
-            for row in ALGO.get_parts_of_list(*Shoes.Brands[Choice.brand]):
+            for row in ALGO.get_parts_of_list(*Brands[Choice.brand]):
                 keyboard.row(*row)
         keyboard.row(MSG.BACK_TO_START_BUTTON)
         bot.send_message(message.chat.id, text=MSG.BRAND_MESSAGE, reply_markup=keyboard)
@@ -40,29 +43,35 @@ def message_with_models_of_selected_brand(message):
         bot.send_message(message.chat.id, text=MSG.ALARM_MESSAGE, reply_markup=keyboard)
 
 
-@bot.message_handler(func=lambda message: message.text in ALGO.generate_model_list(Shoes.Brands))
+@bot.message_handler(func=lambda message: message.text in ALGO.generate_model_list(
+    ALGO.generate_brands_dictionary(FL.BASE_FILE)))
 def message_with_colors_of_selected_model(message):
-    print(ALGO.generate_model_list(Shoes.Brands))
+    print(ALGO.generate_model_list(ALGO.generate_brands_dictionary(FL.BASE_FILE)))
     Choice.set_model(message.text)
-    print(f'message_with_colors_of_selected_model: brand is {Choice.brand}, model is {Choice.model}, color is {Choice.color}')
+    print(f'message_with_colors_of_selected_model: brand is {Choice.brand}, '
+          f'model is {Choice.model}, color is {Choice.color}')
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
     if Choice.brand != '':
-        colors = ALGO.get_list_of_colors(Shoes.Colors, message.text)
+        colors = ALGO.get_list_of_colors(ALGO.generate_brands_dictionary(
+            FL.BASE_FILE, 'Colors'), message.text)
         for row in ALGO.get_parts_of_list(*colors):
             keyboard.row(*row)
         keyboard.row(MSG.BACK_TO_MODEL_CHOICE_BUTTON, MSG.BACK_TO_START_BUTTON)
-        bot.send_message(message.chat.id, text=ALGO.get_color_select_message(Choice.brand, Choice.model), reply_markup=keyboard)
+        bot.send_message(message.chat.id, text=ALGO.get_color_select_message(
+            Choice.brand, Choice.model), reply_markup=keyboard)
     else:
         keyboard.row(MSG.BACK_TO_START_BUTTON)
         bot.send_message(message.chat.id, text=MSG.ALARM_MESSAGE, reply_markup=keyboard)
 
 
-@bot.message_handler(func=lambda message: message.text in ALGO.get_list_of_colors(Shoes.Colors, Choice.model))
+@bot.message_handler(func=lambda message: message.text in ALGO.get_list_of_colors(
+    ALGO.generate_brands_dictionary(FL.BASE_FILE, 'Colors'), Choice.model))
 def message_with_picture_of_selected_model_and_color(message):
     Choice.set_color(message.text)
     print(f'message_with_picture_of_selected_model_and_color: '
           f'brand is {Choice.brand}, model is {Choice.model}, color is {Choice.color}')
-    link = ALGO.get_photo_link(Shoes.Colors, Choice.model, message.text)[0]
+    link = ALGO.get_photo_link(ALGO.generate_brands_dictionary(
+        FL.BASE_FILE, 'Colors'), Choice.model, message.text)[0]
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton(text=MSG.VIEW_PRICE_BUTTON[0], callback_data=MSG.VIEW_PRICE_BUTTON[1]),
@@ -74,7 +83,8 @@ def message_with_picture_of_selected_model_and_color(message):
 @bot.callback_query_handler(func=lambda message: message.data == MSG.VIEW_PRICE_BUTTON[1])
 def message_with_selected_picture_with_price(message):
     try:
-        price = ALGO.get_photo_link(Shoes.Colors, Choice.model, Choice.color)[1]
+        price = ALGO.get_photo_link(ALGO.generate_brands_dictionary(
+            FL.BASE_FILE, 'Colors'), Choice.model, Choice.color)[1]
         print(price)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
