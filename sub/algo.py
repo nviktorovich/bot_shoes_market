@@ -63,5 +63,18 @@ def get_buy_message(description):
 
 
 def send_message_to_host(*args):
-	message = '-'.join(args)
-	return f'✅ {datetime.now()}, {message}'
+
+	phone = args[0]
+	message = ' / '.join(args[1:])
+	today = datetime.today()
+	current_time = today.strftime("дата: %Y-%m-%d\nвремя: %H:%M")
+	return f'✅ Поступила заявка❗️\n{current_time}\n\n📞: {phone}\n👟: {message}'
+
+
+def generate_model_list(dictionary):
+	"""
+
+	:param dictionary: get dictionary with brands - keys
+	:return: list with all values all keys from input dictionary
+	"""
+	return [model for key in dictionary.keys() for model in dictionary[key]]
