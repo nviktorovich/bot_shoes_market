@@ -5,6 +5,10 @@ class BotToken:
 	HOST_ID = 164718531
 
 
+class Files:
+	BASE_FILE = 'shoes.xlsx'
+
+
 class Messages:
 	START_MESSAGE = '✋ Привет, очень рад, что ты с нами!\n' \
 	                'Я могу помочь тебе выбрать отличную обувь.\n' \
