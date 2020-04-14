@@ -1,25 +1,42 @@
 class Shoes:
-	Brands = {'Adidas': ('Gazelle', 'Hamburg', 'EQT', 'ZX 8000', 'Yeezy 500'), 'Fila': ('Disruptor II', 'Sandals')}
-	Models = ['Gazelle', 'Hamburg', 'EQT', 'ZX 8000', 'Yeezy 500', 'Disruptor II', 'Sandals']
+	Brands = {'Adidas': ('Gazelle', 'Hamburg', 'Spezial', 'Samba', 'EQT', 'ZX 8000', 'Yeezy 500'), 'Fila': ('Disruptor II', 'Sandals')}
 
 	Colors = {
 		'Gazelle':
-			[('Pink White', 'price1', "https://sun9-58.userapi.com/c857132/v857132148/146369/3TqvJmG63r4.jpg"),
-			 ('Blue White', 'price2', 'https://media.endclothing.com/media/catalog/product/0/7/07-08-2019_adidas_gazelle_blue_white_ee5511_ja_1.jpg'),
-			 ('Sky Blue', 'price3', 'https://sun9-12.userapi.com/c856120/v856120148/212906/NAb5LelEzDk.jpg'),
-			 ('White', 'price4', 'https://www.northernthreads.co.uk/images/adidas-originals-gazelle-white-gum-p35717-557923_image.jpg'),
-			 ('Black White', 'price5', 'https://www.80scasualclassics.co.uk/images/adidas-gazelle-trainers-black-white-p5397-74103_zoom.jpg'),
-			 ('Red White', 'price6', 'https://www.80scasualclassics.co.uk/images/adidas-gazelle-trainers-red-white-p5761-70715_image.jpg'),
-			 ('Green', 'Price7', 'https://sun9-43.userapi.com/c855120/v855120148/21d5b3/UjsA9QkPjGo.jpg'),
-			 ('Gray Black', 'Price8', 'https://sun9-17.userapi.com/c857332/v857332148/d89c7/7btWlNYAJRQ.jpg')
-			 ],
+			[('PINK', '2190', 'https://sun9-67.userapi.com/c205724/v205724730/ded27/T1DCjpehweM.jpg'),
+			 ('BLACK', '2190', 'https://sun9-9.userapi.com/c205724/v205724730/ded4e/yxSS1YH3Dkw.jpg'),
+			 ('SKY BLUE', '2190', 'https://sun9-48.userapi.com/c205724/v205724613/e18d3/TKPTlBNQ39A.jpg'),
+			 ('GRAY BLACK', '2190', 'https://sun9-20.userapi.com/c205724/v205724613/e18ca/lBEx0-ob0Vs.jpg'),
+			 ('BLUE', '2190', 'https://sun9-20.userapi.com/c205724/v205724613/e1902/jwWux3r32YM.jpg'),
+			 ('GREEN', '2190', 'https://sun9-69.userapi.com/c205724/v205724613/e1932/_wkKjP4yMfI.jpg'),
+			 ('RED', '2190', 'https://sun9-60.userapi.com/c205724/v205724613/e1960/WbXWKZmHEAA.jpg'),
+			 ('BORDEAUX', '2190', 'https://sun9-27.userapi.com/c205724/v205724613/e1ab7/-IayljJ1_dk.jpg'),
+			 ('PINK/GRAY', '2190', 'https://sun9-13.userapi.com/c205724/v205724626/de2b1/qJBs6A45xgY.jpg'),
+			 ('GRAY/PINK', '2190', 'https://sun9-34.userapi.com/c205724/v205724626/de397/BmCZTlkLO2U.jpg'),
+			 ('GRAY', '2190', 'https://sun9-28.userapi.com/c205724/v205724626/de300/V_peOM7e_Wc.jpg'),
+			 ('GRAY/RED', '2190', 'https://sun9-71.userapi.com/c857216/v857216788/159a9b/e080byKqFEA.jpg')
+			  ],
 		'Hamburg':
-			[('Pink', 'price', 'https://sun9-33.userapi.com/c205620/v205620148/d6a32/ImHXIiKAMaE.jpg'),
-			 ('Blue', 'price', 'https://sun9-3.userapi.com/c857336/v857336148/14bd27/yscbBgmSKTU.jpg'),
-			 ('Classic', 'price', 'https://sun9-44.userapi.com/c857728/v857728148/1b64e4/av40_obDd7s.jpg'),
-			 ('Triple Black', 'price', 'https://sun9-15.userapi.com/c850220/v850220462/1ee65/m2rpSjJtndU.jpg'),
-			 ('Red', 'price', 'https://www.stuartslondon.com/images/hamburg-red-white-p31001-109442_zoom.jpg')
+			[('PINK', '2190', 'https://sun9-20.userapi.com/c857024/v857024503/e7ee3/rCRboThFVUE.jpg'),
+			 ('GRAY', '2190', 'https://sun9-46.userapi.com/c857024/v857024503/e7ef2/PDva-q6Tsjc.jpg'),
+			 ('RED', '2190', 'https://sun9-46.userapi.com/c857024/v857024503/e7fae/YZgAhcsClCQ.jpg'),
+			 ('CLASSIC', '2190', 'https://sun9-56.userapi.com/c857024/v857024048/eafff/_r4YrAlJRP4.jpg'),
+			 ('SKY BLUE', '2190', 'https://sun9-6.userapi.com/c857024/v857024048/eb03d/RtTp1HmxNFs.jpg'),
+			 ('TRIPLE BLACK', '2190', 'https://sun9-10.userapi.com/c857024/v857024048/eb058/Z63BP919Ddc.jpg'),
+			 ('DARK BLUE', '2190', 'https://sun9-48.userapi.com/c857120/v857120626/15c9a8/eslzfWkk6Ws.jpg'),
+			 ('BORDEAUX', '2190', 'https://sun9-46.userapi.com/c205724/v205724626/de3bd/iY3Du2Iz-eo.jpg'),
+			 ('BLUE/RED', '2190', 'https://sun9-32.userapi.com/c205724/v205724626/de41e/r0PI-QwJv_c.jpg'),
+			 ('RED/BLACK', '2190', 'https://sun9-36.userapi.com/c855232/v855232788/21b2f4/ikNbguR4XKc.jpg')
 			 ],
+		'Spezial':
+			[('ORANGE/GRAY', '2490', 'https://sun9-2.userapi.com/c857024/v857024934/eb82f/6UjNemkENbg.jpg'),
+			 ('CLASSIC', '2490', 'https://sun9-66.userapi.com/c858528/v858528788/154309/9o_ps9AkGPU.jpg'),
+			 ('TRIPLE BLACK', '2490', 'https://sun9-21.userapi.com/c858528/v858528629/154145/yJIAjqBhM2Q.jpg')
+			],
+		'Samba':
+			[('WHITE/BLACK', '2490', 'https://sun9-41.userapi.com/c857024/v857024934/eb8b6/j9cCC6UZmD0.jpg'),
+			 ('BEIGE/RED', '2490', 'https://sun9-67.userapi.com/c857024/v857024934/eb8f1/M9ATpDCBuak.jpg')
+			],
 		'EQT':
 			[('Red Gray White', 'price', 'https://images.ua.prom.st/1215176577_w640_h640_adidas-eqt-cushion.jpg'),
 			 ('Black White', 'price', 'https://stockx.imgix.net/adidas-EQT-Support-93-17-Black-White-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&q=90&dpr=2&trim=color&updated_at=1543951666'),
