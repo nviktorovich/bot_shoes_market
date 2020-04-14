@@ -1,5 +1,6 @@
 from .constant import Messages
 from datetime import datetime
+import xlrd
 
 
 def get_fission_balance_list(*lst):
@@ -78,3 +79,41 @@ def generate_model_list(dictionary):
 	:return: list with all values all keys from input dictionary
 	"""
 	return [model for key in dictionary.keys() for model in dictionary[key]]
+
+
+def generate_brands_dictionary(file, option='Brands'):
+	"""
+
+	:param file: path to opened files
+	:param option: default = "Brands" to return dictionary with {brand_name:(model1, model2), bran_dname2:(...)};
+					"Colors" to return dictionary with all models colors and other params {model1:[(color1, price, ref),
+																									(color2, ...)]}
+	:return: dictionary due to selected option
+	"""
+	wb = xlrd.open_workbook(file)
+	sheet_names = wb.sheet_names()[1:]
+
+	# create dictionary "Brands"
+	Brands = {}
+
+	for sheet in sheet_names:
+		current_sheet = wb.sheet_by_name(sheet)
+		Brands[sheet] = tuple(
+			set([model.capitalize() for model in current_sheet.col_values(1) if model not in ['', 'MODEL']]))
+
+	# create dictionary "Colors"
+	Colors = {model: [] for brand in Brands.keys() for model in Brands[brand]}
+
+	for sheet in sheet_names:
+		current_sheet = wb.sheet_by_name(sheet)
+		for row_index in range(2, len(current_sheet.col(0))):
+			if current_sheet.row_values(row_index)[1] != '':
+				Colors[current_sheet.row_values(row_index)[1].capitalize()].append(
+					(current_sheet.row_values(row_index)[2],
+					 current_sheet.row_values(row_index)[3],
+					 current_sheet.row_values(row_index)[4]))
+
+	if option == 'Brands':
+		return Brands
+	if option == 'Colors':
+		return Colors
