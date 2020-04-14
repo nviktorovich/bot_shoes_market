@@ -40,8 +40,9 @@ def message_with_models_of_selected_brand(message):
         bot.send_message(message.chat.id, text=MSG.ALARM_MESSAGE, reply_markup=keyboard)
 
 
-@bot.message_handler(func=lambda message: message.text in Shoes.Models)
+@bot.message_handler(func=lambda message: message.text in ALGO.generate_model_list(Shoes.Brands))
 def message_with_colors_of_selected_model(message):
+    print(ALGO.generate_model_list(Shoes.Brands))
     Choice.set_model(message.text)
     print(f'message_with_colors_of_selected_model: brand is {Choice.brand}, model is {Choice.model}, color is {Choice.color}')
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
