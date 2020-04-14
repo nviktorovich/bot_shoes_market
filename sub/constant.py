@@ -1,6 +1,7 @@
 
 class BotToken:
-	API_TOKEN = '1090271153:AAGZF0toeX9uJ56yv_y1sI94Ghkb2Ku_YNE'  # @tester3Bot
+	API_TOKEN = '1239227689:AAFJUSP-q5FuGqOw_LzTSwyPk-Kkw-cBUsI'  # t.me/VsehObuem_bot
+	#API_TOKEN = '1090271153:AAGZF0toeX9uJ56yv_y1sI94Ghkb2Ku_YNE' # @tester3Bot
 	HOST_ID = 164718531
 
 
